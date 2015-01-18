@@ -1,0 +1,98 @@
+<html>
+<title></title>
+<head>
+<style>
+.tile
+{
+height:50px;
+width:50px;
+text-align:center;
+font-size:18pt;
+
+}
+</style>
+
+</head>
+<body onload="startGame()">
+<h1>TIC-TAC PROGRAM</h1>
+<table border="1">
+<tr>
+<td id="n1" class="tile" onClick="firstStep(this)"></td>
+<td  id="n2" class="tile" onclick="firstStep(this)"></td>
+<td  id="n3" class="tile" onclick="firstStep(this)"></td>
+</tr>
+<tr>
+<td id="n4" class="tile" onclick="firstStep(this)"></td>
+<td id="n5"  class="tile" onclick="firstStep(this)"></td>
+<td id="n6"  class="tile" onclick="firstStep(this)"></td>
+</tr>
+<tr>
+<td id="n7" class="tile" onclick="firstStep(this)"></td>
+<td id="n8" class="tile" onclick="firstStep(this)"></td>
+<td id="n9" class="tile" onclick="firstStep(this)"></td>
+</tr>
+</table>
+<script type="text/javascript">
+function startGame()
+{
+document.turn="TIC";
+}
+
+function firstStep(tile)
+{
+if(tile.innerText=="")
+{
+tile.innerText=document.turn;
+swap();
+}
+}
+
+function swap()
+{
+if(successMessage(document.turn))
+{
+alert("winner");
+}
+if(document.turn=="TIC")
+{
+document.turn="TAC";
+}
+else
+{
+document.turn="TIC";
+}
+}
+
+
+function successMessage(move)
+{
+var result=false;
+if(checkingRow(1,2,3,move)||
+checkingRow(4,5,6,move)
+||checkingRow(7,8,9,move)||checkingRow(1,4,7,move)||checkingRow(2,5,8,move)||checkingRow(3,6,9,move)
+||checkingRow(1,5,9,move)||checkingRow(3,5,7,move)){
+result=true;
+alert("true");
+}
+return result;
+}
+
+function checkingRow(a,b,c,move)
+{
+var result=false;
+if(getboxelement(a)==move&&getboxelement(b)==move&&getboxelement(c)==move)
+{
+result=true;
+}
+return result;
+}
+function getboxelement(number)
+{
+  return document.getElementById("n"+number).innerText;
+}
+
+
+
+</script>
+</body>
+</html>
